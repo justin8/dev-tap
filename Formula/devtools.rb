@@ -8,7 +8,7 @@ class Devtools < Formula
   def install
     (bin/"devtools").write <<~EOS
       #!/bin/bash
-      echo "working"
+      curl https://echo.dray.id.au
     EOS
   end
 
